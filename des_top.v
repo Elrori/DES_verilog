@@ -1,0 +1,302 @@
+/**************************************************************************************
+*   Name        :des_top.v
+*   Description :基于FPGA的DES算法设计
+*   Origin      :20181228
+*                20181231
+*   Author      :helrori2011@gmail.com
+**************************************************************************************/
+module des_top
+(
+    input wire clk,
+    input wire rst_n,
+    //change keys:
+    input  wire encrypt,//1: encrypt;0: decrypt
+    input  wire [1:64]keys_64_in,  
+    input  wire change_keys_en,
+    output wire subkeys_16_valid,
+    //stream input(when subkeys_16_valid==1)
+    input  wire data_input_en,
+    input  wire [1:64]data_64_in,
+    output wire [1:64]data_64_out
+);
+wire [1:48]subkeys_1,subkeys_2,subkeys_3,subkeys_4,subkeys_5,subkeys_6,subkeys_7,subkeys_8;
+wire [1:48]subkeys_9,subkeys_10,subkeys_11,subkeys_12,subkeys_13,subkeys_14,subkeys_15,subkeys_16;
+wire keys_error;
+des_subkeys_gen des_subkeys_gen_0
+(
+    .clk(clk),
+    .rst_n(rst_n),
+    
+    .key_in_64_en(change_keys_en),//1:change the keys;0:always zeros
+    .encrypt(encrypt),//1: encrypt;0: decrypt
+    .key_in_64(keys_64_in),
+    .subkeys_1(subkeys_1),
+    .subkeys_2(subkeys_2),
+    .subkeys_3(subkeys_3),
+    .subkeys_4(subkeys_4),
+    .subkeys_5(subkeys_5),
+    .subkeys_6(subkeys_6),
+    .subkeys_7(subkeys_7),
+    .subkeys_8(subkeys_8),
+    .subkeys_9(subkeys_9),
+    .subkeys_10(subkeys_10),
+    .subkeys_11(subkeys_11),
+    .subkeys_12(subkeys_12),
+    .subkeys_13(subkeys_13),
+    .subkeys_14(subkeys_14),
+    .subkeys_15(subkeys_15),
+    .subkeys_16(subkeys_16),
+    .subkeys_16_valid(subkeys_16_valid),
+    .parity_check_error(keys_error)
+    
+);
+
+wire  [1:32]lo_wire1,ro_wire1;
+wire  [1:32]lo_wire2,ro_wire2;
+wire  [1:32]lo_wire3,ro_wire3;
+wire  [1:32]lo_wire4,ro_wire4;
+wire  [1:32]lo_wire5,ro_wire5;
+wire  [1:32]lo_wire6,ro_wire6;
+wire  [1:32]lo_wire7,ro_wire7;
+wire  [1:32]lo_wire8,ro_wire8;
+wire  [1:32]lo_wire9,ro_wire9;
+wire  [1:32]lo_wire10,ro_wire10;
+wire  [1:32]lo_wire11,ro_wire11;
+wire  [1:32]lo_wire12,ro_wire12;
+wire  [1:32]lo_wire13,ro_wire13;
+wire  [1:32]lo_wire14,ro_wire14;
+wire  [1:32]lo_wire15,ro_wire15;
+wire  [1:32]lo_wire16,ro_wire16;
+
+
+reg  [1:64]data_64_in_buff;
+reg  [1:32]lo_buff1,ro_buff1;
+reg  [1:32]lo_buff2,ro_buff2;
+reg  [1:32]lo_buff3,ro_buff3;
+reg  [1:32]lo_buff4,ro_buff4;
+reg  [1:32]lo_buff5,ro_buff5;
+reg  [1:32]lo_buff6,ro_buff6;
+reg  [1:32]lo_buff7,ro_buff7;
+reg  [1:32]lo_buff8,ro_buff8;
+reg  [1:32]lo_buff9,ro_buff9;
+reg  [1:32]lo_buff10,ro_buff10;
+reg  [1:32]lo_buff11,ro_buff11;
+reg  [1:32]lo_buff12,ro_buff12;
+reg  [1:32]lo_buff13,ro_buff13;
+reg  [1:32]lo_buff14,ro_buff14;
+reg  [1:32]lo_buff15,ro_buff15;
+//reg  [1:32]lo_buff16,ro_buff16;
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)begin
+        data_64_in_buff <= 64'd0;
+        lo_buff1 <= 32'd0;
+        ro_buff1 <= 32'd0;
+        lo_buff2 <= 32'd0;
+        ro_buff2 <= 32'd0;
+        lo_buff3 <= 32'd0;
+        ro_buff3 <= 32'd0;
+        lo_buff4 <= 32'd0;
+        ro_buff4 <= 32'd0;
+        lo_buff5 <= 32'd0;
+        ro_buff5 <= 32'd0;
+        lo_buff6 <= 32'd0;
+        ro_buff6 <= 32'd0;
+        lo_buff7 <= 32'd0;
+        ro_buff7 <= 32'd0;
+        lo_buff8 <= 32'd0;
+        ro_buff8 <= 32'd0;
+        lo_buff9 <= 32'd0;
+        ro_buff9 <= 32'd0;
+        lo_buff10 <= 32'd0;
+        ro_buff10 <= 32'd0;
+        lo_buff11 <= 32'd0;
+        ro_buff11 <= 32'd0;
+        lo_buff12 <= 32'd0;
+        ro_buff12 <= 32'd0;
+        lo_buff13 <= 32'd0;
+        ro_buff13 <= 32'd0;
+        lo_buff14 <= 32'd0;
+        ro_buff14 <= 32'd0;
+        lo_buff15 <= 32'd0;
+        ro_buff15 <= 32'd0;
+//        lo_buff16 <= 32'd0;
+//        ro_buff16 <= 32'd0;      
+    end else if(subkeys_16_valid && data_input_en)begin
+        data_64_in_buff <= data_64_in;
+        lo_buff1 <= lo_wire1;
+        ro_buff1 <= ro_wire1;
+        lo_buff2 <= lo_wire2;
+        ro_buff2 <= ro_wire2;
+        lo_buff3 <= lo_wire3;
+        ro_buff3 <= ro_wire3;
+        lo_buff4 <= lo_wire4;
+        ro_buff4 <= ro_wire4;
+        lo_buff5 <= lo_wire5;
+        ro_buff5 <= ro_wire5;
+        lo_buff6 <= lo_wire6;
+        ro_buff6 <= ro_wire6;
+        lo_buff7 <= lo_wire7;
+        ro_buff7 <= ro_wire7;
+        lo_buff8 <= lo_wire8;
+        ro_buff8 <= ro_wire8;
+        lo_buff9 <= lo_wire9;
+        ro_buff9 <= ro_wire9;
+        lo_buff10 <= lo_wire10;
+        ro_buff10 <= ro_wire10;
+        lo_buff11 <= lo_wire11;
+        ro_buff11 <= ro_wire11;
+        lo_buff12 <= lo_wire12;
+        ro_buff12 <= ro_wire12;
+        lo_buff13 <= lo_wire13;
+        ro_buff13 <= ro_wire13;
+        lo_buff14 <= lo_wire14;
+        ro_buff14 <= ro_wire14;
+        lo_buff15 <= lo_wire15;
+        ro_buff15 <= ro_wire15;
+//        lo_buff16 <= lo_wire16;
+//        ro_buff16 <= ro_wire16;        
+    end
+end
+wire [1:32]lo_32,ro_32;
+des_ip des_ip
+(
+    .in_64(data_64_in_buff),
+    .lo_32(lo_32),
+    .ro_32(ro_32)
+);
+des_f_structure des_f_structure_1
+(
+    .li(lo_32),
+    .ri(ro_32),
+    .ki(subkeys_1),
+    .lo(lo_wire1),
+    .ro(ro_wire1)
+);
+des_f_structure des_f_structure_2
+(
+    .li(lo_buff1),
+    .ri(ro_buff1),
+    .ki(subkeys_2),
+    .lo(lo_wire2),
+    .ro(ro_wire2)
+);
+des_f_structure des_f_structure_3
+(
+    .li(lo_buff2),
+    .ri(ro_buff2),
+    .ki(subkeys_3),
+    .lo(lo_wire3),
+    .ro(ro_wire3)
+);
+des_f_structure des_f_structure_4
+(
+    .li(lo_buff3),
+    .ri(ro_buff3),
+    .ki(subkeys_4),
+    .lo(lo_wire4),
+    .ro(ro_wire4)
+);
+des_f_structure des_f_structure_5
+(
+    .li(lo_buff4),
+    .ri(ro_buff4),
+    .ki(subkeys_5),
+    .lo(lo_wire5),
+    .ro(ro_wire5)
+);
+des_f_structure des_f_structure_6
+(
+    .li(lo_buff5),
+    .ri(ro_buff5),
+    .ki(subkeys_6),
+    .lo(lo_wire6),
+    .ro(ro_wire6)
+);
+des_f_structure des_f_structure_7
+(
+    .li(lo_buff6),
+    .ri(ro_buff6),
+    .ki(subkeys_7),
+    .lo(lo_wire7),
+    .ro(ro_wire7)
+);
+des_f_structure des_f_structure_8
+(
+    .li(lo_buff7),
+    .ri(ro_buff7),
+    .ki(subkeys_8),
+    .lo(lo_wire8),
+    .ro(ro_wire8)
+);
+des_f_structure des_f_structure_9
+(
+    .li(lo_buff8),
+    .ri(ro_buff8),
+    .ki(subkeys_9),
+    .lo(lo_wire9),
+    .ro(ro_wire9)
+);
+des_f_structure des_f_structure_10
+(
+    .li(lo_buff9),
+    .ri(ro_buff9),
+    .ki(subkeys_10),
+    .lo(lo_wire10),
+    .ro(ro_wire10)
+);
+des_f_structure des_f_structure_11
+(
+    .li(lo_buff10),
+    .ri(ro_buff10),
+    .ki(subkeys_11),
+    .lo(lo_wire11),
+    .ro(ro_wire11)
+);
+des_f_structure des_f_structure_12
+(
+    .li(lo_buff11),
+    .ri(ro_buff11),
+    .ki(subkeys_12),
+    .lo(lo_wire12),
+    .ro(ro_wire12)
+);
+des_f_structure des_f_structure_13
+(
+    .li(lo_buff12),
+    .ri(ro_buff12),
+    .ki(subkeys_13),
+    .lo(lo_wire13),
+    .ro(ro_wire13)
+);
+des_f_structure des_f_structure_14
+(
+    .li(lo_buff13),
+    .ri(ro_buff13),
+    .ki(subkeys_14),
+    .lo(lo_wire14),
+    .ro(ro_wire14)
+);
+des_f_structure des_f_structure_15
+(
+    .li(lo_buff14),
+    .ri(ro_buff14),
+    .ki(subkeys_15),
+    .lo(lo_wire15),
+    .ro(ro_wire15)
+);
+des_f_structure des_f_structure_16
+(
+    .li(lo_buff15),
+    .ri(ro_buff15),
+    .ki(subkeys_16),
+    .lo(lo_wire16),
+    .ro(ro_wire16)
+);
+//assign data_64_out = {lo_buff16,ro_buff16};
+des_fp des_fp
+(
+    .li_32(ro_wire16),
+    .ri_32(lo_wire16),
+    .out_64(data_64_out)
+);
+endmodule
