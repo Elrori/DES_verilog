@@ -1,6 +1,6 @@
 /**************************************************************************************
 *   Name        :des_top.v
-*   Description :基于FPGA的DES算法设计
+*   Description :鍩轰簬FPGA鐨凞ES绠楁硶璁捐
 *   Origin      :20181228
 *                20181231
 *   Author      :helrori2011@gmail.com
