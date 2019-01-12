@@ -1,6 +1,6 @@
 /**************************************************************************************
 *   Name        :des_s_box.v
-*   Description :DES des_s_box,part of des_top.v 
+*   Description :DES des_s_box,part of des_top.v ROM法实现s-box
 *                输入最高位编号1，最低为编号64,其他类似
 *   Origin      :20181229
 *   Author      :helrori2011@gmail.com
@@ -15,7 +15,6 @@ parameter widthad   = 6;
 parameter datafile  = "none";
 reg [width-1:0] mem [(2**widthad)-1:0];
 //reg[6:0] n;
-
 /*
     CAUTION $readmemh 部分综合工具可能无法综合!
 */

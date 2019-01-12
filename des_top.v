@@ -1,28 +1,93 @@
 /**************************************************************************************
 *   Name        :des_top.v
-*   Description :基于FPGA的DES算法设计
+*   Description :基于FPGA的DES算法设计.
+*                子密钥提前生成的f函数16级流水线结构,包含输入输出指示的时序结构,输入寄存,
+*                输出无寄存
+*                操作顺序：先置encrypt，keys_64_in，（这两个信号必须一同操作），
+*                          再置keys_64_in为高一个或多个时钟，
+*                          等待（19clk）subkeys_16_valid置高，
+*                          进行stream input端口操作。
 *   Origin      :20181228
 *                20181231
+*                20190101
 *   Author      :helrori2011@gmail.com
 **************************************************************************************/
+`define USE_SUBKEYS_ASYNC //使用异步逻辑直接生成subkeys，否则使用迭代(19clk)产生subkeys
 module des_top
 (
     input wire clk,
-    input wire rst_n,
+    input wire rst_n,//复位后19周期会产生全零的subkeys，再与数据64'd0运算得出一个无用结果
     //change keys:
-    input  wire encrypt,//1: encrypt;0: decrypt
-    input  wire [1:64]keys_64_in,  
-    input  wire change_keys_en,
-    output wire subkeys_16_valid,
-    //stream input(when subkeys_16_valid==1)
+    input  wire encrypt,            //1: encrypt;0: decrypt
+    input  wire [1:64]keys_64_in,  //当使用des_subkeys_gen_async.v模块时密码更改后至少要等待20ns才能进行data_64_in的数据输入
+    input  wire change_keys_en,   //当使用des_subkeys_gen_async.v模块时此信号无效
+    output wire subkeys_16_valid,//当使用des_subkeys_gen_async.v模块时此信号一直为高
+    //stream input(when subkeys_16_valid==1):
     input  wire data_input_en,
     input  wire [1:64]data_64_in,
-    output wire [1:64]data_64_out
+    output wire [1:64]data_64_out,
+    output wire data_output_valid
 );
 wire [1:48]subkeys_1,subkeys_2,subkeys_3,subkeys_4,subkeys_5,subkeys_6,subkeys_7,subkeys_8;
 wire [1:48]subkeys_9,subkeys_10,subkeys_11,subkeys_12,subkeys_13,subkeys_14,subkeys_15,subkeys_16;
 wire keys_error;
-des_subkeys_gen des_subkeys_gen_0
+wire pipeline_en;
+reg [3:0]pipline_cnt;
+assign pipeline_en = (data_input_en | (pipline_cnt!=4'd0));
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)begin
+        pipline_cnt <= 4'd0;
+    end else if(data_input_en)begin
+        pipline_cnt <= 4'd1;
+    end else if(pipline_cnt!=4'd0)begin
+        pipline_cnt <= pipline_cnt + 1'd1;
+    end else begin
+        pipline_cnt <= 4'd0;
+    end
+end
+/*
+* 将data_input_en延迟16周期得到data_output_valid
+*/
+reg [15:0]shifft_buff;
+assign data_output_valid = shifft_buff[15];
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)begin
+        shifft_buff <= 16'd0;
+    end else begin
+        shifft_buff <= {shifft_buff[14:0],data_input_en};
+    end
+end
+
+`ifdef USE_SUBKEYS_ASYNC
+des_subkeys_gen_async des_subkeys
+(
+    .clk(clk),//not used
+    .rst_n(rst_n),//not used
+    
+    .key_in_64_en(change_keys_en),//not used
+    .encrypt(encrypt),//1: encrypt;0: decrypt
+    .key_in_64(keys_64_in),
+    .subkeys_1(subkeys_1),
+    .subkeys_2(subkeys_2),
+    .subkeys_3(subkeys_3),
+    .subkeys_4(subkeys_4),
+    .subkeys_5(subkeys_5),
+    .subkeys_6(subkeys_6),
+    .subkeys_7(subkeys_7),
+    .subkeys_8(subkeys_8),
+    .subkeys_9(subkeys_9),
+    .subkeys_10(subkeys_10),
+    .subkeys_11(subkeys_11),
+    .subkeys_12(subkeys_12),
+    .subkeys_13(subkeys_13),
+    .subkeys_14(subkeys_14),
+    .subkeys_15(subkeys_15),
+    .subkeys_16(subkeys_16),
+    .subkeys_16_valid(subkeys_16_valid),//not used,always high
+    .parity_check_error(keys_error)
+);
+`else
+des_subkeys_gen des_subkeys
 (
     .clk(clk),
     .rst_n(rst_n),
@@ -47,9 +112,9 @@ des_subkeys_gen des_subkeys_gen_0
     .subkeys_15(subkeys_15),
     .subkeys_16(subkeys_16),
     .subkeys_16_valid(subkeys_16_valid),
-    .parity_check_error(keys_error)
-    
+    .parity_check_error(keys_error) 
 );
+`endif
 
 wire  [1:32]lo_wire1,ro_wire1;
 wire  [1:32]lo_wire2,ro_wire2;
@@ -85,10 +150,24 @@ reg  [1:32]lo_buff12,ro_buff12;
 reg  [1:32]lo_buff13,ro_buff13;
 reg  [1:32]lo_buff14,ro_buff14;
 reg  [1:32]lo_buff15,ro_buff15;
-//reg  [1:32]lo_buff16,ro_buff16;
+/*
+*  仅当data_input_en使能时，同步输入数据:
+*/
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)
+        data_64_in_buff <= 64'd0;
+    else if(data_input_en)
+        data_64_in_buff <= data_64_in;
+    else
+        data_64_in_buff <= data_64_in_buff;
+end
+/*
+*   流水线中间寄存器(置于des_f_structure与des_f_structure之间)。
+*   最后一级输出没有设置寄存器，所以SUBKEYS变化将直接导致data_64_out的变化
+*   必须使用data_output_valid指明 输入过后16周期后有效输出的开始
+*/
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
-        data_64_in_buff <= 64'd0;
         lo_buff1 <= 32'd0;
         ro_buff1 <= 32'd0;
         lo_buff2 <= 32'd0;
@@ -119,10 +198,7 @@ always@(posedge clk or negedge rst_n)begin
         ro_buff14 <= 32'd0;
         lo_buff15 <= 32'd0;
         ro_buff15 <= 32'd0;
-//        lo_buff16 <= 32'd0;
-//        ro_buff16 <= 32'd0;      
-    end else if(subkeys_16_valid && data_input_en)begin
-        data_64_in_buff <= data_64_in;
+    end else if(subkeys_16_valid && pipeline_en)begin
         lo_buff1 <= lo_wire1;
         ro_buff1 <= ro_wire1;
         lo_buff2 <= lo_wire2;
@@ -153,8 +229,7 @@ always@(posedge clk or negedge rst_n)begin
         ro_buff14 <= ro_wire14;
         lo_buff15 <= lo_wire15;
         ro_buff15 <= ro_wire15;
-//        lo_buff16 <= lo_wire16;
-//        ro_buff16 <= ro_wire16;        
+
     end
 end
 wire [1:32]lo_32,ro_32;
@@ -292,7 +367,6 @@ des_f_structure des_f_structure_16
     .lo(lo_wire16),
     .ro(ro_wire16)
 );
-//assign data_64_out = {lo_buff16,ro_buff16};
 des_fp des_fp
 (
     .li_32(ro_wire16),

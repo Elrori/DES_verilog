@@ -1,3 +1,10 @@
+/**************************************************************************************
+*   Name        :des_subkeys_unit.v
+*   Description :part of des_subkeys_gen.v.
+*   Origin      :20181230
+*                20181231
+*   Author      :helrori2011@gmail.com
+**************************************************************************************/
 module des_subkeys_unit
 (
     input  wire [4:0]cnt_0,

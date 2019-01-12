@@ -1,0 +1,1 @@
+iverilog -y. -o des_top.vvp .\des_top_tb.v

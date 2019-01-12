@@ -1,6 +1,6 @@
 /**************************************************************************************
 *   Name        :des_subkeys_gen.v
-*   Description :part of des_top.v.多时钟周期，单位结构复用!!
+*   Description :part of des_top.v.迭代法生成subkeys
 *                输入最高位编号1，最低为编号64,其他类似。
 *                系统上电后(or 通过key_in_64_en同步更新密码后)执行19个周期提前产生subkeys
 *                key_in_64_en __|~~~~~~~~~|___________________________
@@ -16,10 +16,9 @@
 module des_subkeys_gen
 (
     input  wire clk,
-    input  wire rst_n,
-    
-    input  wire key_in_64_en,//1:change the keys;0:always zeros
-    input  wire encrypt,//1: encrypt;0: decrypt
+    input  wire rst_n,//复位后会产生全零的subkeys
+    input  wire encrypt,//1: encrypt;0: decrypt，此信号变必须与密码一同变更(即用key_in_64_en进行刷新subkeys操作)
+    input  wire key_in_64_en,//allow key_in_64 to change the keys,以key_in_64_en==1时的最后一个clk上升沿为采样点
     input  wire [1:64]key_in_64,
     output reg  [1:48]subkeys_1,
     output reg  [1:48]subkeys_2,
@@ -46,14 +45,15 @@ module des_subkeys_gen
 *   input  key_in_64
 *   output key_in_64_buff0,key_in_64_buff0_ok
 */
-reg [1:64]key_in_64_buff0;
-reg key_in_64_buff0_ok;
+
 assign parity_check_error = ~((^key_in_64_buff0[1:8])&(^key_in_64_buff0[9:16])&(^key_in_64_buff0[17:24])&(^key_in_64_buff0[25:32])
                            &(^key_in_64_buff0[33:40])&(^key_in_64_buff0[41:48])&(^key_in_64_buff0[49:56])&(^key_in_64_buff0[57:64]));
+reg [1:64]key_in_64_buff0;
+reg key_in_64_buff0_ok;                           
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         key_in_64_buff0_ok  <= 1'd0;
-        key_in_64_buff0     <= 64'd0;//默认64'd0
+        key_in_64_buff0     <= 64'd0;//默认密码64'd0
     end else if(key_in_64_en)begin
         key_in_64_buff0_ok  <= 1'd0;
         key_in_64_buff0     <= key_in_64;

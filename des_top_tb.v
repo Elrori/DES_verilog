@@ -16,19 +16,38 @@ initial begin
         clk = 0;
         rst_n = 1;
         key_in_64_en = 0;
+        encrypt = 0;
+        data_input_en = 0;
+        key_in_64 = 64'h1334_5779_9BBC_DFF1;
+        data_64_in= 64'h85E8_1354_0F0A_B405;//64'h0123_4567_89AB_CDEF;
+        #20 rst_n=0;
+        #20 rst_n=1;
+        #1000
+        key_in_64_en = 1;
+        #20 
+        key_in_64_en = 0;
+        #2500
+        data_input_en=1;
+        #20
+        data_input_en=0;
+        #1000
+        
+        
+        key_in_64_en = 0;
         encrypt = 1;
         data_input_en = 0;
         key_in_64 = 64'h1334_5779_9BBC_DFF1;
         data_64_in= 64'h0123_4567_89AB_CDEF;
-        #20 rst_n=0;
-        #20 rst_n=1;
         #10 key_in_64_en = 1;
         #40 key_in_64_en = 0;
-        #2500
+        #1000
         data_input_en=1;
-        #400
+        #20
+        data_64_in= 64'h0123_4567_89AB_0000;
+        #20
         data_input_en=0;
-        #5000
+        #1000       
+        
         $finish;
       
 end
