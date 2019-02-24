@@ -13,5 +13,5 @@
                           2.进行stream input端口操作.
    Origin      :20181228
                 20181231
-                20190101
+                20190101 - 实施在 ep4ce10,cy7c68013a;等效速率 3Mbytes/s.
    Author      :helrori2011@gmail.com
