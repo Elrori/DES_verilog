@@ -31,11 +31,13 @@ Description
     3.进行stream input端口操作。
     
 Origin
--------------- 
+--------------
+ 
 181228
 
+License    
 --------------
-License     
+ 
 MIT
    
 Authors
