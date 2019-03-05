@@ -1,0 +1,59 @@
+# Reading D:/Quartus_17.1/modelsim_ase/tcl/vsim/pref.tcl
+# do des_top_tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:24:49 on Mar 02,2019
+# vlog -reportprogress 300 ../../final_rtl/S1_ROM.v ../../final_rtl/S2_ROM.v ../../final_rtl/S3_ROM.v ../../final_rtl/S4_ROM.v ../../final_rtl/S5_ROM.v ../../final_rtl/S6_ROM.v ../../final_rtl/S7_ROM.v ../../final_rtl/S8_ROM.v ../../final_rtl/des_f_structure.v ../../final_rtl/des_fp.v ../../final_rtl/des_ip.v ../../final_rtl/des_pc1.v ../../final_rtl/des_pc2.v ../../final_rtl/des_s_box.v ../../final_rtl/des_subkeys_gen.v ../../final_rtl/des_subkeys_gen_async.v ../../final_rtl/des_subkeys_unit.v ../../final_rtl/des_top.v ../../final_rtl/des_top_tb.v ../../final_rtl/des_top_tb_quartus.v 
+# -- Compiling module S1_ROM
+# -- Compiling module S2_ROM
+# -- Compiling module S3_ROM
+# -- Compiling module S4_ROM
+# -- Compiling module S5_ROM
+# -- Compiling module S6_ROM
+# -- Compiling module S7_ROM
+# -- Compiling module S8_ROM
+# -- Compiling module des_f_structure
+# -- Compiling module des_fp
+# -- Compiling module des_ip
+# -- Compiling module des_pc1
+# -- Compiling module des_pc2
+# -- Compiling module des_s_box
+# -- Compiling module des_subkeys_gen
+# -- Compiling module des_subkeys_gen_async
+# -- Compiling module des_subkeys_unit
+# -- Compiling module des_top
+# -- Compiling module des_top_tb
+# -- Compiling module des_top_tb_quartus
+# 
+# Top level modules:
+# 	des_s_box
+# 	des_subkeys_gen
+# 	des_top_tb
+# 	des_top_tb_quartus
+# End time: 11:24:49 on Mar 02,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim des_top_tb 
+# Start time: 11:24:50 on Mar 02,2019
+# Loading work.des_top_tb
+# Loading work.des_top
+# Loading work.des_subkeys_gen_async
+# Loading work.des_pc1
+# Loading work.des_pc2
+# Loading work.des_ip
+# Loading work.des_f_structure
+# Loading work.S1_ROM
+# Loading work.S2_ROM
+# Loading work.S3_ROM
+# Loading work.S4_ROM
+# Loading work.S5_ROM
+# Loading work.S6_ROM
+# Loading work.S7_ROM
+# Loading work.S8_ROM
+# Loading work.des_fp
+# hexadecimal
+# ** Note: $finish    : ../../final_rtl/des_top_tb.v(51)
+#    Time: 6670 ns  Iteration: 0  Instance: /des_top_tb
+# 1
+# Break in Module des_top_tb at ../../final_rtl/des_top_tb.v line 51
+# End time: 11:25:39 on Mar 02,2019, Elapsed time: 0:00:49
+# Errors: 0, Warnings: 0

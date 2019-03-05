@@ -1,0 +1,56 @@
+[*]
+[*] GTKWave Analyzer v3.3.71 (w)1999-2016 BSI
+[*] Sun Dec 30 13:50:42 2018
+[*]
+[dumpfile] "G:\WORK_SPACE\Verilog_HDL_CODE\Data_Encryption_Standard\sim\des_subkeys_gen\wave.vcd"
+[dumpfile_mtime] "Sun Dec 30 13:38:12 2018"
+[dumpfile_size] 22897
+[savefile] "G:\WORK_SPACE\Verilog_HDL_CODE\Data_Encryption_Standard\sim\des_subkeys_gen\wave.gtkw"
+[timestart] 0
+[size] 1920 1001
+[pos] -42 -42
+*-15.278398 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] des_subkeys_gen_tb.
+[sst_width] 239
+[signals_width] 389
+[sst_expanded] 1
+[sst_vpaned_height] 287
+@28
+des_subkeys_gen_tb.des_subkeys_gen_0.clk
+des_subkeys_gen_tb.des_subkeys_gen_0.rst_n
+@22
+des_subkeys_gen_tb.des_subkeys_gen_0.key_in_64[1:64]
+@28
+des_subkeys_gen_tb.des_subkeys_gen_0.key_in_64_en
+des_subkeys_gen_tb.des_subkeys_gen_0.key_in_64_buff0_ok
+@22
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_1[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_2[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_3[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_4[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_5[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_6[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_7[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_8[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_9[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_10[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_11[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_12[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_13[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_14[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_15[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_16[1:48]
+des_subkeys_gen_tb.des_subkeys_gen_0.key_in_64_buff0[1:64]
+des_subkeys_gen_tb.des_subkeys_gen_0.pc1_lo_28[1:28]
+des_subkeys_gen_tb.des_subkeys_gen_0.pc1_ro_28[1:28]
+@23
+des_subkeys_gen_tb.des_subkeys_gen_0.lo_28[1:28]
+@22
+des_subkeys_gen_tb.des_subkeys_gen_0.ro_28[1:28]
+@28
+des_subkeys_gen_tb.des_subkeys_gen_0.subkeys_16_valid
+@24
+des_subkeys_gen_tb.des_subkeys_gen_0.cnt_0[4:0]
+des_subkeys_gen_tb.des_subkeys_gen_0.state[1:0]
+[pattern_trace] 1
+[pattern_trace] 0

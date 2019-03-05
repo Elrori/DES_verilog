@@ -1,0 +1,55 @@
+[*]
+[*] GTKWave Analyzer v3.3.71 (w)1999-2016 BSI
+[*] Mon Dec 31 04:25:54 2018
+[*]
+[dumpfile] "G:\WORK_SPACE\Verilog_HDL_CODE\Data_Encryption_Standard\sim\des_subkeys_gen\wave.vcd"
+[dumpfile_mtime] "Mon Dec 31 03:00:14 2018"
+[dumpfile_size] 50422
+[savefile] "G:\WORK_SPACE\Verilog_HDL_CODE\Data_Encryption_Standard\sim\des_subkeys_gen\wave_mult.gtkw"
+[timestart] 0
+[size] 1920 1001
+[pos] -42 -42
+*-17.469019 683000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] des_subkeys_gen_tb.
+[sst_width] 239
+[signals_width] 240
+[sst_expanded] 1
+[sst_vpaned_height] 287
+@28
+des_subkeys_gen_tb.clk
+des_subkeys_gen_tb.rst_n
+des_subkeys_gen_tb.encrypt
+des_subkeys_gen_tb.key_in_64_en
+@22
+des_subkeys_gen_tb.key_in_64[1:64]
+des_subkeys_gen_tb.des_subkeys_gen_0.key_in_64_buff0[1:64]
+@23
+des_subkeys_gen_tb.subkeys_1[1:48]
+@22
+des_subkeys_gen_tb.subkeys_2[1:48]
+des_subkeys_gen_tb.subkeys_3[1:48]
+des_subkeys_gen_tb.subkeys_4[1:48]
+des_subkeys_gen_tb.subkeys_5[1:48]
+des_subkeys_gen_tb.subkeys_6[1:48]
+des_subkeys_gen_tb.subkeys_7[1:48]
+des_subkeys_gen_tb.subkeys_8[1:48]
+des_subkeys_gen_tb.subkeys_9[1:48]
+des_subkeys_gen_tb.subkeys_10[1:48]
+des_subkeys_gen_tb.subkeys_11[1:48]
+des_subkeys_gen_tb.subkeys_12[1:48]
+des_subkeys_gen_tb.subkeys_13[1:48]
+des_subkeys_gen_tb.subkeys_14[1:48]
+des_subkeys_gen_tb.subkeys_15[1:48]
+des_subkeys_gen_tb.subkeys_16[1:48]
+@28
+des_subkeys_gen_tb.subkeys_16_valid
+@24
+des_subkeys_gen_tb.des_subkeys_gen_0.cnt_0[4:0]
+des_subkeys_gen_tb.des_subkeys_gen_0.state[1:0]
+@22
+des_subkeys_gen_tb.des_subkeys_gen_0.pc1_lo_28[1:28]
+des_subkeys_gen_tb.des_subkeys_gen_0.li_28[1:28]
+des_subkeys_gen_tb.des_subkeys_gen_0.lo_28[1:28]
+des_subkeys_gen_tb.des_subkeys_gen_0.lo_28_buff[1:28]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,125 @@
+[*]
+[*] GTKWave Analyzer v3.3.71 (w)1999-2016 BSI
+[*] Tue Jan 01 05:27:58 2019
+[*]
+[dumpfile] "G:\WORK_SPACE\Verilog_HDL_CODE\Data_Encryption_Standard\sim\des_top\wave.vcd"
+[dumpfile_mtime] "Tue Jan 01 05:21:00 2019"
+[dumpfile_size] 300235
+[savefile] "G:\WORK_SPACE\Verilog_HDL_CODE\Data_Encryption_Standard\sim\des_top\wave_test_ok_2.gtkw"
+[timestart] 0
+[size] 1920 1001
+[pos] -106 -106
+*-19.873281 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] des_top_tb.
+[sst_width] 239
+[signals_width] 240
+[sst_expanded] 1
+[sst_vpaned_height] 287
+@28
+des_top_tb.des_top.change_keys_en
+des_top_tb.des_top.clk
+@22
+des_top_tb.des_top.data_64_in[1:64]
+des_top_tb.des_top.data_64_in_buff[1:64]
+des_top_tb.des_top.data_64_out[1:64]
+@28
+des_top_tb.des_top.data_input_en
+des_top_tb.des_top.data_output_valid
+des_top_tb.des_top.encrypt
+@22
+des_top_tb.des_top.keys_64_in[1:64]
+@28
+des_top_tb.des_top.keys_error
+@22
+des_top_tb.des_top.lo_32[1:32]
+des_top_tb.des_top.lo_buff1[1:32]
+des_top_tb.des_top.lo_buff2[1:32]
+des_top_tb.des_top.lo_buff3[1:32]
+des_top_tb.des_top.lo_buff4[1:32]
+des_top_tb.des_top.lo_buff5[1:32]
+des_top_tb.des_top.lo_buff6[1:32]
+des_top_tb.des_top.lo_buff7[1:32]
+des_top_tb.des_top.lo_buff8[1:32]
+des_top_tb.des_top.lo_buff9[1:32]
+des_top_tb.des_top.lo_buff10[1:32]
+des_top_tb.des_top.lo_buff11[1:32]
+des_top_tb.des_top.lo_buff12[1:32]
+des_top_tb.des_top.lo_buff13[1:32]
+des_top_tb.des_top.lo_buff14[1:32]
+des_top_tb.des_top.lo_buff15[1:32]
+des_top_tb.des_top.lo_wire1[1:32]
+des_top_tb.des_top.lo_wire2[1:32]
+des_top_tb.des_top.lo_wire3[1:32]
+des_top_tb.des_top.lo_wire4[1:32]
+des_top_tb.des_top.lo_wire5[1:32]
+des_top_tb.des_top.lo_wire6[1:32]
+des_top_tb.des_top.lo_wire7[1:32]
+des_top_tb.des_top.lo_wire8[1:32]
+des_top_tb.des_top.lo_wire9[1:32]
+des_top_tb.des_top.lo_wire10[1:32]
+des_top_tb.des_top.lo_wire11[1:32]
+des_top_tb.des_top.lo_wire12[1:32]
+des_top_tb.des_top.lo_wire13[1:32]
+des_top_tb.des_top.lo_wire14[1:32]
+des_top_tb.des_top.lo_wire15[1:32]
+des_top_tb.des_top.lo_wire16[1:32]
+@28
+des_top_tb.des_top.pipeline_en
+@22
+des_top_tb.des_top.pipline_cnt[3:0]
+des_top_tb.des_top.ro_32[1:32]
+des_top_tb.des_top.ro_buff1[1:32]
+des_top_tb.des_top.ro_buff2[1:32]
+des_top_tb.des_top.ro_buff3[1:32]
+des_top_tb.des_top.ro_buff4[1:32]
+des_top_tb.des_top.ro_buff5[1:32]
+des_top_tb.des_top.ro_buff6[1:32]
+des_top_tb.des_top.ro_buff7[1:32]
+des_top_tb.des_top.ro_buff8[1:32]
+des_top_tb.des_top.ro_buff9[1:32]
+des_top_tb.des_top.ro_buff10[1:32]
+des_top_tb.des_top.ro_buff11[1:32]
+des_top_tb.des_top.ro_buff12[1:32]
+des_top_tb.des_top.ro_buff13[1:32]
+des_top_tb.des_top.ro_buff14[1:32]
+des_top_tb.des_top.ro_buff15[1:32]
+des_top_tb.des_top.ro_wire1[1:32]
+des_top_tb.des_top.ro_wire2[1:32]
+des_top_tb.des_top.ro_wire3[1:32]
+des_top_tb.des_top.ro_wire4[1:32]
+des_top_tb.des_top.ro_wire5[1:32]
+des_top_tb.des_top.ro_wire6[1:32]
+des_top_tb.des_top.ro_wire7[1:32]
+des_top_tb.des_top.ro_wire8[1:32]
+des_top_tb.des_top.ro_wire9[1:32]
+des_top_tb.des_top.ro_wire10[1:32]
+des_top_tb.des_top.ro_wire11[1:32]
+des_top_tb.des_top.ro_wire12[1:32]
+des_top_tb.des_top.ro_wire13[1:32]
+des_top_tb.des_top.ro_wire14[1:32]
+des_top_tb.des_top.ro_wire15[1:32]
+des_top_tb.des_top.ro_wire16[1:32]
+@28
+des_top_tb.des_top.rst_n
+@22
+des_top_tb.des_top.shifft_buff[15:0]
+des_top_tb.des_top.subkeys_1[1:48]
+des_top_tb.des_top.subkeys_2[1:48]
+des_top_tb.des_top.subkeys_3[1:48]
+des_top_tb.des_top.subkeys_4[1:48]
+des_top_tb.des_top.subkeys_5[1:48]
+des_top_tb.des_top.subkeys_6[1:48]
+des_top_tb.des_top.subkeys_7[1:48]
+des_top_tb.des_top.subkeys_8[1:48]
+des_top_tb.des_top.subkeys_9[1:48]
+des_top_tb.des_top.subkeys_10[1:48]
+des_top_tb.des_top.subkeys_11[1:48]
+des_top_tb.des_top.subkeys_12[1:48]
+des_top_tb.des_top.subkeys_13[1:48]
+des_top_tb.des_top.subkeys_14[1:48]
+des_top_tb.des_top.subkeys_15[1:48]
+des_top_tb.des_top.subkeys_16[1:48]
+@28
+des_top_tb.des_top.subkeys_16_valid
+[pattern_trace] 1
+[pattern_trace] 0
