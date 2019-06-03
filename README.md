@@ -7,17 +7,12 @@ Description
 --------------
 
 基于FPGA的DES算法设计.(Data Encryption Standard ECB mode in verilog)
-
 子密钥提前生成的f函数16级流水线结构,包含输入输出指示的时序结构,输入寄存,
-
 输出无寄存。
 
 on_board_test内包含上位机和下位机代码，可以下载进行测试，测试下位机硬件要求：
-
 USB2.0 IC CY7C680138,FPGA EP4CE10,引脚约束见csv.csv文件，请通过引脚连接确
-
 定您的板子是否符合条件。上位机要求：Python3环境，pyusb库；对CY7C680138安装
-
 CYPRESS驱动用于刷写固件，对CY7C680138安装libusb驱动(zadig)用于python通信。
 
 sim内包含RTL仿真方法，使用iverilog或modelsim。
