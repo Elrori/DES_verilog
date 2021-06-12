@@ -34,7 +34,7 @@ quartus_for_gate_sim内包含一个门级仿真工程。
 
     1.先置encrypt，keys_64_in，
 
-    2.等待20ns，
+    2.等待1clk，
 
     3.进行stream input端口操作。
     
